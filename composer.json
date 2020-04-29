@@ -1,0 +1,10 @@
+{
+  "name": "aatadina/328/dating",
+  "authors": [{
+    "name": "Aaron Tadina",
+    "email": "atadina@mail.greenriver.edu"
+  }],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
