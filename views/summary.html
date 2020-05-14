@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bb7ac2ffe5.js" crossorigin="anonymous"></script>
+    <link href="css/summary.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="{{@BASE}}" >My Dating Website</a>
+</nav>
+<h1>Summary</h1>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-5">
+        <div class="border">Name: {{@SESSION.fname}} {{@SESSION.lname}}</div>
+        <div class="border">Gender: {{@SESSION.gender}}</div>
+        <div class="border">Age: {{@SESSION.age}}</div>
+        <div class="border">Phone Number: {{@SESSION.phonenum}}</div>
+        <div class="border">State: {{@SESSION.state}}</div>
+        <div class="border">Seeking: {{@SESSION.seeking}}</div>
+        <div class="border">Interests: {{@SESSION.interestsString}}</div>
+        </div>
+    <div class="col-6">
+        <div class="container-fluid">
+            <i class="fas fa-user-alt"></i><br>
+            <strong>Biography</strong>
+            <p class="mb-5">{{@SESSION.bio}}</p>
+            <button class="btn-primary mt-3">Contact Me!</button>
+        </div>
+    </div>
+    </div>
+
+</div>
+</body>
+</html>

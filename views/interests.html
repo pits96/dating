@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Interests</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="{{@BASE}}" >My Dating Website</a>
+</nav>
+<h1>Interests</h1>
+<hr>
+<form action="#" method="post">
+    <div class="container-fluid">
+    <h2>In-door Interests</h2>
+        <div class="row">
+    <repeat group="{{@indoor1}}" value="{{@indoor}}">
+        <div class="col-2">
+    <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+        </div>
+    </repeat>
+    </div>
+    <div class="row">
+        <repeat group="{{@indoor2}}" value="{{@indoor}}">
+            <div class="col-2">
+                <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+            </div>
+        </repeat>
+    </div><br><hr>
+    <h2>Out-door Interests</h2>
+    <div class="row">
+    <repeat group="{{@outdoor1}}" value="{{@indoor}}">
+        <div class="col-2">
+            <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+        </div>
+    </repeat>
+    </div>
+    <div class="row mb-3">
+        <repeat group="{{@outdoor2}}" value="{{@indoor}}">
+            <div class="col-2">
+                <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+            </div>
+        </repeat>
+    </div>
+        <button class="btn-primary float-right m-5" type="submit">Next ></button>
+    </div>
+</form>
+</body>
+</html>
