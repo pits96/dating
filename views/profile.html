@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="{{@BASE}}" >My Dating Website</a>
+</nav>
+<h1>Profile</h1>
+<hr>
+<form action="#" method="post">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-5 overflow-auto">
+            <label for="email" class="font-weight-bold">Email</label>
+            <input type="text" name="email" class="form-control" id="email" placeholder="my_email@gmail.com">
+            <label for="state" class="font-weight-bold">State</label>
+            <select id="state" name="state" class="custom-select">
+            <repeat group="{{@states}}" value="{{@state}}">
+                <option>{{@state}}</option>
+            </repeat>
+            </select>
+            <label for="seek" class="form-check-label font-weight-bold">Seeking</label><br>
+            <input type="radio" id="seek" name="seek" class="form-group m-2" value="male">Male
+            <input type="radio" name="seek" class="form-group m-2" value="female">Female<br>
+        </div>
+        <div class="col-5">
+            <label for="bio" class="font-weight-bold">Biography</label>
+        <textarea class="overflow-auto mb-3" cols="100" rows="10" name="bio" id="bio"></textarea>
+
+            <button class="btn-primary float-right mt-5" type="submit">Next ></button>
+        </div>
+    </div>
+
+</div>
+</form>
+</body>
+</html>
