@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="{{@BASE}}" >My Dating Website</a>
+</nav>
+<form action="#" method="POST">
+<div class="container-fluid">
+    <h1>Personal Information</h1>
+    <hr>
+    <div class="row auto">
+        <div class="col-6">
+
+    <label for="fname" class="font-weight-bold">First Name</label>
+    <input type="text" name="fname" class="form-control" id="fname">
+    <label for="lname" class="font-weight-bold">Last Name</label>
+    <input type="text" name="lname" class="form-control" id="lname">
+    <label for="age" class="font-weight-bold">Age</label>
+    <input type="text" name="age" class="form-control" id="age">
+    <label for="gender" class="form-check-label font-weight-bold">Gender</label><br>
+    <input type="radio" id="gender" name="gender" value="male" class="form-group m-2">Male
+    <input type="radio" name="gender" value="female" class="form-group m-2">Female<br>
+    <label for="phonenum" class="font-weight-bold">Phone Number</label>
+    <input type="text" name="phonenum" class="form-control" id="phonenum">
+
+        </div>
+        <div class="col-4">
+            <br><br>
+            <div class="container bg-secondary border rounded mb-3">
+            <p>Note: All information entered is protected by our <a href="#">privacy policy</a>. Profile information
+            can only be viewed by others with your permission.</p>
+            </div>
+
+            <button class="btn-primary float-right mt-5" type="submit">Next ></button>
+        </div>
+    </div>
+</div>
+
+</form>
+</body>
+</html>
