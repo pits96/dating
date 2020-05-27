@@ -15,21 +15,26 @@
 <form action="#" method="post">
     <div class="container-fluid">
     <h2>In-door Interests</h2>
+        <h4 class="text-danger font-weight-bolder">{{@errorInInterest}}</h4>
         <div class="row">
     <repeat group="{{@indoor1}}" value="{{@indoor}}">
         <div class="col-2">
-    <input type="checkbox" name="indoor[]" value="{{@indoor}}">{{@indoor}}
+    <input type="checkbox" name="indoor[]" value="{{@indoor}}"<repeat group="{{@SESSION.indoor}}" value="{{@indoorsess}}">
+            <check if="{{@indoorsess==@indoor}}">checked</check></repeat>>{{@indoor}}
+
         </div>
     </repeat>
     </div>
     <div class="row">
         <repeat group="{{@indoor2}}" value="{{@indoor}}">
             <div class="col-2">
-                <input type="checkbox" name="indoor[]" value="{{@indoor}}">{{@indoor}}
+                <input type="checkbox" name="indoor[]" value="{{@indoor}}"<repeat group="{{@SESSION.indoor}}" value="{{@indoorsess}}">
+                <check if="{{@indoorsess==@indoor}}">checked</check></repeat>>{{@indoor}}
             </div>
         </repeat>
     </div><br><hr>
     <h2>Out-door Interests</h2>
+        <h4 class="text-danger font-weight-bolder">{{@errorOutInterest}}</h4>
     <div class="row">
     <repeat group="{{@outdoor1}}" value="{{@outdoor}}">
         <div class="col-2">

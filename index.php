@@ -67,15 +67,23 @@ $f3->route('GET|POST /signup',function($f3){
     }
 });
 $f3->route('GET|POST /profile',function($f3){
-
-    $f3->set('states',array("Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware"
-    ,"Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota"
-    ,"Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio",
-    "Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsins","Wyoming"));
-    $view = new Template();
-    echo $view->render('views/profile.html');
+    if($_SERVER['REQUEST_METHOD']=='GET') {
+        $f3->set('states', array("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware"
+        , "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota"
+        , "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+            "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsins", "Wyoming"));
+        $view = new Template();
+        echo $view->render('views/profile.html');
+    }
     if($_SERVER['REQUEST_METHOD']=='POST'){
-        $_SESSION['email']=$_POST['email'];
+        $valid=true;
+        if(empty($_POST['email'])||!validEmail($_POST['email'])){
+            $f3->set('errorEmail',"Email must contain '@' and '.com'");
+            $valid=false;
+        }
+        else {
+            $_SESSION['email'] = $_POST['email'];
+        }
         $_SESSION['state']=$_POST['state'];
         if($_POST['seek']=='male'){
             $_SESSION['seeking']="Male";
@@ -84,7 +92,11 @@ $f3->route('GET|POST /profile',function($f3){
             $_SESSION['seeking']="Female";
         }
         $_SESSION['bio']=$_POST['bio'];
-        $f3->reroute('interests');
+        $view = new Template();
+        echo $view->render('views/profile.html');
+        if($valid) {
+            $f3->reroute('interests');
+        }
     }
 });
 $f3->route('GET|POST /interests',function($f3){
@@ -93,18 +105,33 @@ $f3->route('GET|POST /interests',function($f3){
     $f3->set('indoor2',array("cooking","playing cards","board games","video games"));
     $f3->set('outdoor1',array("hiking","climbing","swimming","collecting"));
     $f3->set('outdoor2',array("walking","biking"));
-
+    $f3->set('indoor',array("tv","puzzles","movies","reading","cooking","playing cards","board games","video games"));
+    $f3->set('outdoor',array("hiking","climbing","swimming","collecting","walking","biking"));
     if($_SERVER['REQUEST_METHOD']=='POST'){
-        $_SESSION['indoor']=array();
-        foreach ($_POST['indoor'] as $indoor){
-            array_push($_SESSION['indoor'],$indoor.", ");
+        $valid = true;
+        if(!validInterest($_POST['indoor'],$f3->get('indoor'))){
+            $f3->set('errorInInterest',"No spoofing please :)");
+            $valid=false;
         }
-        $_SESSION['outdoor']=array();
-        foreach ($_POST['outdoor'] as $outdoor){
-            array_push($_SESSION['outdoor'],$outdoor.", ");
+        else {
+            $_SESSION['indoor'] = array();
+            foreach ($_POST['indoor'] as $indoor) {
+                array_push($_SESSION['indoor'], $indoor . ", ");
+            }
         }
-
-        $f3->reroute('summary');
+        if(!validInterest($_POST['outdoor'],$f3->get('outdoor'))){
+            $f3->set('errorOutInterest',"No spoofing please :)");
+            $valid=false;
+        }
+        else {
+            $_SESSION['outdoor'] = array();
+            foreach ($_POST['outdoor'] as $outdoor) {
+                array_push($_SESSION['outdoor'], $outdoor . ", ");
+            }
+        }
+        if($valid) {
+            $f3->reroute('summary');
+        }
     }
     $view = new Template();
     echo $view->render('views/interests.html');
