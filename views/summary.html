@@ -23,7 +23,8 @@
         <div class="border">Phone Number: {{@SESSION.phonenum}}</div>
         <div class="border">State: {{@SESSION.state}}</div>
         <div class="border">Seeking: {{@SESSION.seeking}}</div>
-        <div class="border">Interests: {{@SESSION.interestsString}}</div>
+            <div class="border">Interests: <repeat group="{{@SESSION.indoor}}" value="{{@indoor}}">{{@indoor}}</repeat><br>
+                <repeat group="{{@SESSION.outdoor}}" value="{{@outdoor}}">{{@outdoor}}</repeat></div>
         </div>
     <div class="col-6">
         <div class="container-fluid">

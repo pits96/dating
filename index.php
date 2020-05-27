@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 session_start();
 //Require the autoload file
 require_once ("vendor/autoload.php");
+require("model/validation.php");
 //instantiate the f3 Base class
 $f3 = Base::instance();
 //$f3->route('GET /test',function(){
@@ -19,11 +20,28 @@ $f3->route('GET /',function(){
     echo $view->render('views/home.html');
 });
 $f3->route('GET|POST /signup',function($f3){
-    $view = new Template();
-    echo $view->render('views/personalinfo.html');
+    $valid=true;
+    if($_SERVER['REQUEST_METHOD']=='GET') {
+        $view = new Template();
+        echo $view->render('views/personalinfo.html');
+    }
     if($_SERVER['REQUEST_METHOD']=='POST'){
-    $_SESSION['fname']=$_POST['fname'];
-    $_SESSION['lname']=$_POST['lname'];
+        if(empty($_POST['fname'])||!validName($_POST['fname'])){
+            $f3->set('errorname','Invalid first name.');
+            $valid=false;
+        }
+        else{
+            $_SESSION['fname'] = $_POST['fname'];
+        }
+        if(empty($_POST['lname'])||!validName($_POST['lname'])){
+            $f3->set('errorLname',"Invalid last name.");
+            $valid=false;
+        }
+        else{
+            $_SESSION['lname'] = $_POST['lname'];
+        }
+
+
     $_SESSION['age']=$_POST['age'];
     if($_POST['gender']=='male'){
         $_SESSION['gender']="Male";
@@ -32,7 +50,11 @@ $f3->route('GET|POST /signup',function($f3){
         $_SESSION['gender']="Female";
     }
     $_SESSION['phonenum']=$_POST['phonenum'];
-    $f3->reroute('profile');
+        $view = new Template();
+        echo $view->render('views/personalinfo.html');
+    if($valid) {
+        $f3->reroute('profile');
+    }
     }
 });
 $f3->route('GET|POST /profile',function($f3){
@@ -62,35 +84,17 @@ $f3->route('GET|POST /interests',function($f3){
     $f3->set('indoor2',array("cooking","playing cards","board games","video games"));
     $f3->set('outdoor1',array("hiking","climbing","swimming","collecting"));
     $f3->set('outdoor2',array("walking","biking"));
+
     if($_SERVER['REQUEST_METHOD']=='POST'){
-        $_SESSION['interests']=array();
-        //loops through the arrays and checks if it's set, if it is
-        // then it pushes the item into the session array.
-        foreach ($f3->get('indoor1') as $value) {
-            if (isset($_POST["$value"])) {
-                array_push($_SESSION['interests'], "$value");
-            }
+        $_SESSION['indoor']=array();
+        foreach ($_POST['indoor'] as $indoor){
+            array_push($_SESSION['indoor'],$indoor.", ");
         }
-        foreach ($f3->get('indoor2') as $value) {
-            if (isset($_POST["$value"])) {
-                array_push($_SESSION['interests'], "$value");
-            }
+        $_SESSION['outdoor']=array();
+        foreach ($_POST['outdoor'] as $outdoor){
+            array_push($_SESSION['outdoor'],$outdoor.", ");
         }
-        foreach ($f3->get('outdoor1') as $value) {
-            if (isset($_POST["$value"])) {
-                array_push($_SESSION['interests'], "$value");
-            }
-        }
-        foreach ($f3->get('outdoor2') as $value) {
-            if (isset($_POST["$value"])) {
-                array_push($_SESSION['interests'], "$value");
-            }
-        }
-        $stringinterest="";
-        foreach ($_SESSION['interests'] as $interest){
-            $stringinterest.=$interest." ";
-        }
-        $_SESSION['interestsString']=$stringinterest;
+
         $f3->reroute('summary');
     }
     $view = new Template();
@@ -100,6 +104,6 @@ $f3->route('GET /summary',function(){
 
     $view = new Template();
     echo $view->render('views/summary.html');
-//    session_destroy();
+    session_destroy();
 });
 $f3->run();

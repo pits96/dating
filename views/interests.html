@@ -18,29 +18,29 @@
         <div class="row">
     <repeat group="{{@indoor1}}" value="{{@indoor}}">
         <div class="col-2">
-    <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+    <input type="checkbox" name="indoor[]" value="{{@indoor}}">{{@indoor}}
         </div>
     </repeat>
     </div>
     <div class="row">
         <repeat group="{{@indoor2}}" value="{{@indoor}}">
             <div class="col-2">
-                <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+                <input type="checkbox" name="indoor[]" value="{{@indoor}}">{{@indoor}}
             </div>
         </repeat>
     </div><br><hr>
     <h2>Out-door Interests</h2>
     <div class="row">
-    <repeat group="{{@outdoor1}}" value="{{@indoor}}">
+    <repeat group="{{@outdoor1}}" value="{{@outdoor}}">
         <div class="col-2">
-            <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+            <input type="checkbox" name="outdoor[]" value="{{@outdoor}}">{{@outdoor}}
         </div>
     </repeat>
     </div>
     <div class="row mb-3">
-        <repeat group="{{@outdoor2}}" value="{{@indoor}}">
+        <repeat group="{{@outdoor2}}" value="{{@outdoor}}">
             <div class="col-2">
-                <input type="checkbox" name="{{@indoor}}">{{@indoor}}
+                <input type="checkbox" name="outdoor[]" value="{{@outdoor}}">{{@outdoor}}
             </div>
         </repeat>
     </div>
