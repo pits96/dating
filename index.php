@@ -54,6 +54,10 @@ $f3->route('GET|POST /signup',function($f3){
     else if($_POST['gender']=='female'){
         $_SESSION['gender']="Female";
     }
+    if(empty($_POST['phonenum'])||!validPhone($_POST['phonenum'])){
+        $f3->set('errorPhone',"Phone number must be numbers and must be greater than 4 digits.");
+        $valid=false;
+    }
     $_SESSION['phonenum']=$_POST['phonenum'];
         $view = new Template();
         echo $view->render('views/personalinfo.html');

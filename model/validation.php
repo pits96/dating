@@ -5,3 +5,6 @@ function validName($text){
 function validAge($num){
     return is_numeric($num);
 }
+function validPhone($num){
+    return is_numeric($num)&&sizeof($num)>4;
+}
