@@ -41,8 +41,13 @@ $f3->route('GET|POST /signup',function($f3){
             $_SESSION['lname'] = $_POST['lname'];
         }
 
-
-    $_SESSION['age']=$_POST['age'];
+        if(empty($_POST['age'])||!validAge($_POST['age'])){
+            $f3->set('errorAge',"Please enter a valid age.");
+            $valid=false;
+        }
+        else {
+            $_SESSION['age'] = $_POST['age'];
+        }
     if($_POST['gender']=='male'){
         $_SESSION['gender']="Male";
     }

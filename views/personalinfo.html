@@ -24,7 +24,8 @@
     <input type="text" name="lname" class="form-control" id="lname" value="{{@SESSION.lname}}">
             <h4 class="text-danger font-weight-bolder">{{@errorLname}}</h4>
     <label for="age" class="font-weight-bold">Age</label>
-    <input type="text" name="age" class="form-control" id="age">
+    <input type="text" name="age" class="form-control" id="age" value="{{@SESSION.age}}">
+            <h4 class="text-danger font-weight-bolder">{{@errorAge}}</h4>
     <label for="gender" class="form-check-label font-weight-bold">Gender</label><br>
     <input type="radio" id="gender" name="gender" value="male" class="form-group m-2">Male
     <input type="radio" name="gender" value="female" class="form-group m-2">Female<br>
