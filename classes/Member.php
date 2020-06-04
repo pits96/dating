@@ -11,13 +11,6 @@ class Member
     private $_seeking;
     private $_bio;
 
-    function __construct($fname,$lname,$age,$gender)
-    {
-        $this->setFname($fname);
-        $this->setLname($lname);
-        $this->setAge($age);
-        $this->setGender($gender);
-    }
     public function setFname($fname){
         $this->_fname=$fname;
     }

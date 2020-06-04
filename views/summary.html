@@ -17,20 +17,36 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-5">
-        <div class="border">Name: {{@SESSION.fname}} {{@SESSION.lname}}</div>
-        <div class="border">Gender: {{@SESSION.gender}}</div>
-        <div class="border">Age: {{@SESSION.age}}</div>
-        <div class="border">Phone Number: {{@SESSION.phonenum}}</div>
-        <div class="border">State: {{@SESSION.state}}</div>
-        <div class="border">Seeking: {{@SESSION.seeking}}</div>
-            <div class="border">Interests: <repeat group="{{@SESSION.indoor}}" value="{{@indoor}}">{{@indoor}}</repeat><br>
-                <repeat group="{{@SESSION.outdoor}}" value="{{@outdoor}}">{{@outdoor}}</repeat></div>
+            <div class="border">Name: <check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getFname()}} {{@SESSION.premium->getLname()}}
+            <false>{{@SESSION.member->getFname()}} {{@SESSION.member->getLname()}}</false>
+            </check></div>
+        <div class="border">Gender: <check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getGender()}}
+            <false>{{@SESSION.member->getGender()}}</false>
+        </check></div>
+        <div class="border">Age: <check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getAge()}}
+            <false>{{@SESSION.member->getAge()}}</false>
+        </check></div>
+        <div class="border">Phone Number: <check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getPhone()}}
+            <false>{{@SESSION.member->getPhone()}}</false>
+        </check></div>
+        <div class="border">State: <check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getState()}}
+            <false>{{@SESSION.member->getState()}}</false>
+        </check></div>
+        <div class="border">Seeking: <check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getSeeking()}}
+            <false>{{@SESSION.member->getSeeking()}}</false>
+        </check></div>
+            <check if="{{isset(@SESSION.premium)}}">
+            <div class="border">Interests: {{@SESSION.premium->getIndoorInterests()}}<br>
+                {{@SESSION.premium->getOutdoorInterests()}}</div>
+            </check>
         </div>
     <div class="col-6">
         <div class="container-fluid">
             <i class="fas fa-user-alt"></i><br>
             <strong>Biography</strong>
-            <p class="mb-5">{{@SESSION.bio}}</p>
+            <p class="mb-5"><check if="{{isset(@SESSION.premium)}}">{{@SESSION.premium->getBio()}}
+                <false>{{@SESSION.member->getBio()}}</false>
+            </check></p>
             <button class="btn-primary mt-3">Contact Me!</button>
         </div>
     </div>

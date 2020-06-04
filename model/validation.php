@@ -26,13 +26,16 @@ class validation
 
     function validInterest($selectedInterest, $array)
     {
+
 //    print_r($selectedInterest);
 //    print_r($array);
 
 //    We need to check each condiment in our array
-        foreach ($selectedInterest as $selected) {
-            if (!in_array($selected, $array)) {
-                return false;
+        if(!empty($selectedInterest)) {
+            foreach ($selectedInterest as $selected) {
+                if (!in_array($selected, $array)) {
+                    return false;
+                }
             }
         }
         return true;
